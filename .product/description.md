@@ -1,4 +1,4 @@
-## Perplexity Text Analyzer
+## WordPress Perplexity Plugin: Analyze with Perplexity
 
 Perplexity Text Analyzer is a WordPress plugin that seamlessly integrates AI-powered content analysis into your website. When visitors select text on your WordPress posts, a sleek floating button appears, allowing them to instantly analyze the selected content using Perplexity AI's advanced language models. This creates an interactive reading experience that encourages deeper engagement with your content.
 
