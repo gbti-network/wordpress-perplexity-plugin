@@ -1,0 +1,47 @@
+{
+  "name": "perplexity-text-analyzer",
+  "version": "1.0.2",
+  "description": "WordPress plugin that adds a floating Analyze with Perplexity button when text is selected",
+  "main": "perplexity-learn-more.php",
+  "scripts": {
+    "commit": "node ./.scripts/commit.js",
+    "push": "node ./.scripts/push.js",
+    "deploy": "node ./.scripts/commit.js \"Update\" && node ./.scripts/push.js",
+    "dev-commit": "node ./.scripts/commit.js",
+    "dev-push": "node ./.scripts/push.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gbti-network/wordpress-perplexity-plugin.git"
+  },
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "perplexity",
+    "ai",
+    "text-selection",
+    "content-analysis",
+    "gbti-network"
+  ],
+  "author": "GBTI Network <gbti.labs@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/gbti-network/wordpress-perplexity-plugin/issues"
+  },
+  "homepage": "https://github.com/gbti-network/wordpress-perplexity-plugin#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "files": [
+    "css/",
+    "js/",
+    "img/",
+    "perplexity-learn-more.php",
+    "README.md",
+    ".product/"
+  ]
+}
