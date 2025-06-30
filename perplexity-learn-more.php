@@ -3,7 +3,7 @@
  * Plugin Name: Perplexity Text Analyzer
  * Plugin URI: https://gbti.network/?utm_source=wordpress&utm_medium=plugin&utm_campaign=perplexity-text-analyzer
  * Description: Adds a floating "Analyze with Perplexity" button when text is selected on your WordPress site.
- * Version: 1.0.2
+ * Version: 1.0.4.1
  * Author: GBTI Network
  * Author URI: https://gbti.network/?utm_source=wordpress&utm_medium=plugin-author&utm_campaign=perplexity-text-analyzer
  * Text Domain: perplexity-learn-more
@@ -22,7 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
 class PerplexityTextAnalyzer {
     
     // Plugin version constant
-    const VERSION = '1.0.2';
+    const VERSION = '1.0.4.1';
     
     // Static positioning offset variables
     public static $position_offset_x = 8;
@@ -38,6 +38,9 @@ class PerplexityTextAnalyzer {
     public static $font_size = 12;
     public static $menu_border_radius = 5;
     public static $logo_url = '';
+    
+    // Mobile device configuration
+    public static $enable_on_mobile = false;
     
     /**
      * Initialize the plugin
@@ -140,7 +143,8 @@ class PerplexityTextAnalyzer {
             'positionOffsetY' => self::$position_offset_y,
             'options' => array(),
             'fontSize' => self::$font_size,
-            'menuBorderRadius' => self::$menu_border_radius
+            'menuBorderRadius' => self::$menu_border_radius,
+            'enableOnMobile' => self::$enable_on_mobile
         ));
     }
 }

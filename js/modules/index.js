@@ -36,9 +36,9 @@ console.log('Perplexity module loading...');
         
         try {
             const ui = new PerplexityUI(config);
-            const positioning = new PerplexityPositioning();
-            const actions = new PerplexityActions();
-            const events = new PerplexityEvents(ui, positioning, actions);
+            const positioning = new PerplexityPositioning(config);
+            const actions = new PerplexityActions(config);
+            const events = new PerplexityEvents(ui, positioning, actions, config);
             
             console.log('Perplexity classes created, initializing events...');
             

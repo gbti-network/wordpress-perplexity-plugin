@@ -3,7 +3,6 @@
  * 
  * Handles all event listeners and coordinates between modules
  */
-import { config } from './config.js';
 
 /**
  * Events class responsible for handling all event listeners
@@ -13,11 +12,13 @@ export class PerplexityEvents {
      * @param {Object} ui - The UI module instance
      * @param {Object} positioning - The Positioning module instance
      * @param {Object} actions - The Actions module instance
+     * @param {Object} config - The configuration object
      */
-    constructor(ui, positioning, actions) {
+    constructor(ui, positioning, actions, config) {
         this.ui = ui;
         this.positioning = positioning;
         this.actions = actions;
+        this.config = config;
     }
     
     /**
@@ -25,6 +26,22 @@ export class PerplexityEvents {
      */
     init() {
         console.log('Events.init() called - setting up event listeners');
+        
+        // Check if feature is disabled on mobile devices
+        const isMobile = this.config.isMobileDevice();
+        if (this.config.debug) {
+            console.log('Perplexity mobile detection:', {
+                enableOnMobile: this.config.enableOnMobile,
+                isMobileDevice: isMobile,
+                userAgent: navigator.userAgent,
+                willInitialize: this.config.enableOnMobile || !isMobile
+            });
+        }
+        
+        if (!this.config.enableOnMobile && isMobile) {
+            console.log('Perplexity: Feature disabled on mobile devices - skipping initialization');
+            return;
+        }
         
         // Listen for text selection using modern selectionchange event
         document.addEventListener('selectionchange', this.handleTextSelection.bind(this));
@@ -86,24 +103,35 @@ export class PerplexityEvents {
      * Handle text selection events
      */
     handleTextSelection() {
+        // Check if feature is disabled on mobile devices
+        const isMobile = this.config.isMobileDevice();
+        if (!this.config.enableOnMobile && isMobile) {
+            if (this.config.debug) {
+                console.log('Perplexity: Text selection ignored - feature disabled on mobile devices', {
+                    enableOnMobile: this.config.enableOnMobile,
+                    isMobileDevice: isMobile
+                });
+            }
+            return;
+        }
 
         const selection = window.getSelection();
         const selectedText = selection.toString().trim();
         
         // Debug selection
-        if (config.debug) {
+        if (this.config.debug) {
 
             console.log('Selection event:', {
                 selectedText,
                 textLength: selectedText.length,
-                minTextLength: config.minTextLength,
+                minTextLength: this.config.minTextLength,
                 selection,
                 rangeCount: selection.rangeCount
             });
         }
         
         // Only proceed if there's actual text selected and meets minimum length
-        if (selectedText.length >= config.minTextLength) {
+        if (selectedText.length >= this.config.minTextLength) {
             // Store selected text in actions module
             this.actions.setSelectedText(selectedText);
             

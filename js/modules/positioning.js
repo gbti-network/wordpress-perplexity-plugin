@@ -3,12 +3,14 @@
  * 
  * Handles positioning of UI elements relative to text selection
  */
-import { config } from './config.js';
 
 /**
  * Positioning class responsible for positioning UI elements
  */
 export class PerplexityPositioning {
+    constructor(config) {
+        this.config = config;
+    }
     // Static default X offset
     static DEFAULT_OFFSET_X = 8;
     /**
@@ -52,14 +54,14 @@ export class PerplexityPositioning {
         
         // Position at top-right of the first line of selection
         // Use configurable offsets from PHP (convert strings to numbers)
-        const offsetX = parseInt(config.positionOffsetX) || PerplexityPositioning.DEFAULT_OFFSET_X; // pixels to the right
-        const offsetY = parseInt(config.positionOffsetY) || -8; // pixels above/below
+        const offsetX = parseInt(this.config.positionOffsetX) || PerplexityPositioning.DEFAULT_OFFSET_X; // pixels to the right
+        const offsetY = parseInt(this.config.positionOffsetY) || -8; // pixels above/below
         
         // Debug config values
-        if (config.debug) {
+        if (this.config.debug) {
             console.log('Config debug:', {
-                configPositionOffsetX: config.positionOffsetX,
-                configPositionOffsetY: config.positionOffsetY,
+                configPositionOffsetX: this.config.positionOffsetX,
+                configPositionOffsetY: this.config.positionOffsetY,
                 finalOffsetX: offsetX,
                 finalOffsetY: offsetY,
                 windowPerplexityTextAnalyzer: window.perplexityTextAnalyzer
@@ -77,7 +79,7 @@ export class PerplexityPositioning {
         container.style.zIndex = '10000';
         
         // Log positioning info if debug is enabled
-        if (config.debug) {
+        if (this.config.debug) {
             console.log('Positioning container at top-right:', {
                 selection: rect,
                 firstLine: firstLineRect,

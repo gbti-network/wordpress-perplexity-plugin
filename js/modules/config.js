@@ -33,6 +33,9 @@ export const config = {
         return window.perplexityTextAnalyzer?.debug === true || window.perplexityTextAnalyzer?.debug === "1";
     })(),
     
+    // Mobile device configuration
+    enableOnMobile: window.perplexityTextAnalyzer?.enableOnMobile === true || window.perplexityTextAnalyzer?.enableOnMobile === "1",
+    
     // Positioning offsets
     positionOffsetX: window.perplexityTextAnalyzer?.positionOffsetX || 8,
     positionOffsetY: window.perplexityTextAnalyzer?.positionOffsetY || -8,
@@ -80,5 +83,32 @@ export const config = {
             return 'desktop';
         }
         return 'widescreen';
+    },
+    
+    // Helper method to detect if device is mobile
+    isMobileDevice: function() {
+        // Check user agent for mobile devices
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        
+        // Check for iOS devices
+        if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+            return true;
+        }
+        
+        // Check for Android devices
+        if (/android/i.test(userAgent)) {
+            return true;
+        }
+        
+        // Check for other mobile devices
+        if (/webOS|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
+            return true;
+        }
+        
+        // Also check touch capability and screen size
+        const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        const isSmallScreen = window.innerWidth <= 767;
+        
+        return hasTouch && isSmallScreen;
     }
 };

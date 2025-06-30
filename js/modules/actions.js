@@ -3,13 +3,13 @@
  * 
  * Handles all user interactions and actions
  */
-import { config } from './config.js';
 
 /**
  * Actions class responsible for handling user interactions
  */
 export class PerplexityActions {
-    constructor() {
+    constructor(config) {
+        this.config = config;
         this.selectedText = '';
     }
     
@@ -46,7 +46,7 @@ export class PerplexityActions {
         const charCount = text.length;
         
         // Check if over URL limit
-        const overLimit = charCount > config.maxCharacterLimit;
+        const overLimit = charCount > this.config.maxCharacterLimit;
         
         return {
             charCount,
@@ -102,7 +102,7 @@ export class PerplexityActions {
      */
     copyToClipboard(buttonElement) {
         navigator.clipboard.writeText(this.selectedText).then(() => {
-            if (config.debug) {
+            if (this.config.debug) {
                 console.log('Text copied to clipboard');
             }
             
