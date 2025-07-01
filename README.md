@@ -136,11 +136,13 @@ For detailed documentation, tutorials, and support, visit the [official product 
 
 ## Contributing
 
-1. Fork the repository
+Contributions are managed on our [GitHub repository](https://github.com/gbti-network/wordpress-perplexity-plugin).
+
+1. Fork the GitHub repository
 2. Create a feature branch
 3. Make your changes
 4. Test across different WordPress environments
-5. Submit a pull request
+5. Submit a pull request to the GitHub repository
 
 ## License
 
