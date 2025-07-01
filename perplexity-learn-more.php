@@ -34,7 +34,7 @@ class PerplexityTextAnalyzer {
     public static $icon_border_radius = 4;
     public static $min_text_length = 3;
     public static $max_character_limit = 2000;
-    public static $debug = true;
+    public static $debug = false;
     public static $font_size = 12;
     public static $menu_border_radius = 5;
     public static $logo_url = '';

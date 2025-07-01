@@ -130,6 +130,10 @@ Automatically detects environment and constructs correct URLs:
 - Safari 11+
 - Edge 79+
 
+## More Information
+
+For detailed documentation, tutorials, and support, visit the [official product page](https://gbti.network/products/wordpress-perplexity-plugin/).
+
 ## Contributing
 
 1. Fork the repository
